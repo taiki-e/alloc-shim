@@ -1,0 +1,12 @@
+[package]
+name = "other-way2"
+version = "0.0.0"
+authors = ["Taiki Endo <te316e89@gmail.com>"]
+edition = "2018"
+publish = false
+
+[features]
+std = []
+alloc = []
+
+default = ["alloc"]
