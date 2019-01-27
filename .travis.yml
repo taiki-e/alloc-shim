@@ -13,12 +13,15 @@ matrix:
       script:
         - cargo test --no-default-features
         - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features
+        - cargo test --manifest-path examples/std-shim/Cargo.toml --no-default-features
         - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features
         - cargo test --no-default-features --features=std
         - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features --features=std
+        - cargo test --manifest-path examples/std-shim/Cargo.toml --no-default-features --features=std
         - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features --features=std
         - cargo test --no-default-features --features=alloc
         - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features --features=alloc
+        - cargo test --manifest-path examples/std-shim/Cargo.toml --no-default-features --features=alloc
         - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features --features=alloc
 
     - rust: nightly
@@ -42,9 +45,11 @@ before_script:
 script:
   - cargo test --no-default-features
   - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features
+  - cargo test --manifest-path examples/std-shim/Cargo.toml --no-default-features
   - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features
   - cargo test --no-default-features --features=std
   - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features --features=std
+  - cargo test --manifest-path examples/std-shim/Cargo.toml --no-default-features --features=std
   - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features --features=std
 
 notifications:
