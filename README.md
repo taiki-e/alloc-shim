@@ -16,26 +16,27 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-alloc = { version = "0.1", package = "alloc-shim" }
+alloc-shim = { version = "0.1" }
 ```
 
-Set the features so that `std` depends on `alloc-shim/std`:
+Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
 
 ```toml
 [features]
-std = ["alloc/std"]
+std = ["alloc-shim/std"]
+alloc = ["alloc-shim/alloc"]
 ```
 
 Add this to your crate root (`lib.rs` or `main.rs`):
 
 ```rust
-#![cfg_attr(not(feature = "std"), feature(alloc))]
+#![cfg_attr(feature = "alloc", feature(alloc))]
 ```
 
 Now, you can use alloc-shim:
 
 ```rust
-use alloc::*;
+use alloc::prelude::v1::*; // And more...
 ```
 
 The current version of alloc-shim requires Rust 1.31 or later.

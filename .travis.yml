@@ -11,18 +11,15 @@ matrix:
     - rust: stable
     - rust: nightly
       script:
-        - cargo test
-        - cargo test --manifest-path examples/alloc-shim1/Cargo.toml
-        - cargo test --manifest-path examples/alloc-shim2/Cargo.toml
-        - cargo test --manifest-path examples/other-way1/Cargo.toml
-        - cargo test --manifest-path examples/other-way2/Cargo.toml
-        - cargo test --features=std
-        - cargo test --manifest-path examples/alloc-shim1/Cargo.toml --features=std
-        - cargo test --manifest-path examples/alloc-shim2/Cargo.toml --features=std
-        - cargo test --manifest-path examples/other-way1/Cargo.toml --features=std
-        - cargo test --manifest-path examples/other-way2/Cargo.toml --features=std
-        - cargo test --manifest-path examples/alloc-shim2/Cargo.toml --no-default-features
-        - cargo test --manifest-path examples/other-way2/Cargo.toml --no-default-features
+        - cargo test --no-default-features
+        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features
+        - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features
+        - cargo test --no-default-features --features=std
+        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features --features=std
+        - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features --features=std
+        - cargo test --no-default-features --features=alloc
+        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features --features=alloc
+        - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features --features=alloc
 
     - rust: nightly
       name: cargo clippy
@@ -43,11 +40,12 @@ before_script:
   - set -o errexit
 
 script:
-  - cargo test --features=std
-  - cargo test --manifest-path examples/alloc-shim1/Cargo.toml --features=std
-  - cargo test --manifest-path examples/alloc-shim2/Cargo.toml --features=std
-  - cargo test --manifest-path examples/other-way1/Cargo.toml --features=std
-  - cargo test --manifest-path examples/other-way2/Cargo.toml --features=std
+  - cargo test --no-default-features
+  - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features
+  - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features
+  - cargo test --no-default-features --features=std
+  - cargo test --manifest-path examples/alloc-shim/Cargo.toml --no-default-features --features=std
+  - cargo test --manifest-path examples/other-way/Cargo.toml --no-default-features --features=std
 
 notifications:
   email:

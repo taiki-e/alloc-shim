@@ -14,15 +14,14 @@ categories = ["rust-patterns", "no-std"]
 exclude = ["/.travis.yml"]
 
 [workspace]
-members = [
-    "examples/other-way1",
-    "examples/other-way2",
-    "examples/alloc-shim1",
-    "examples/alloc-shim2",
-]
+members = ["examples/other-way", "examples/alloc-shim"]
 
 [badges]
 travis-ci = { repository = "taiki-e/alloc-shim" }
 
+[lib]
+name = "alloc"
+
 [features]
 std = []
+alloc = []

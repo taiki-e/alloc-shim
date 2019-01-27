@@ -1,5 +1,5 @@
 [package]
-name = "alloc-shim2"
+name = "use-alloc-shim"
 version = "0.0.0"
 authors = ["Taiki Endo <te316e89@gmail.com>"]
 edition = "2018"
@@ -9,7 +9,5 @@ publish = false
 alloc-shim = { path = "../..", version = "0.1", optional = true }
 
 [features]
-std = ["alloc", "alloc-shim/std"]
-alloc = ["alloc-shim"]
-
-default = ["alloc"]
+std = ["alloc-shim/std"]
+alloc = ["alloc-shim/alloc"]

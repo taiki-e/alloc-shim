@@ -1,6 +1,6 @@
-#![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
+#![cfg_attr(feature = "alloc", feature(alloc))]
 
-#[cfg(all(feature = "alloc", not(feature = "std")))]
+#[cfg(feature = "alloc")]
 extern crate alloc;
 
 #[cfg(any(feature = "alloc", feature = "std"))]
@@ -26,5 +26,5 @@ fn alloc_fn() {
 #[cfg(feature = "std")]
 #[test]
 fn std_fn() {
-    pub use std::sync::{atomic::AtomicPtr, Arc};
+    pub use std::sync::{atomic::AtomicPtr, Arc, Mutex};
 }
