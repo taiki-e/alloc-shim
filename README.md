@@ -1,6 +1,6 @@
 # alloc-shim
 
-[![Build Status](http://img.shields.io/travis/taiki-e/alloc-shim.svg)](https://travis-ci.org/taiki-e/alloc-shim)
+[![Build Status](https://travis-ci.com/taiki-e/alloc-shim.svg?branch=master)](https://travis-ci.com/taiki-e/alloc-shim)
 [![version](https://img.shields.io/crates/v/alloc-shim.svg)](https://crates.io/crates/alloc-shim/)
 [![documentation](https://docs.rs/alloc-shim/badge.svg)](https://docs.rs/alloc-shim/)
 [![license](https://img.shields.io/crates/l/alloc-shim.svg)](https://crates.io/crates/alloc-shim/)
