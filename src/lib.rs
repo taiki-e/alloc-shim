@@ -8,7 +8,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! alloc-shim = { version = "0.1" }
+//! alloc-shim = { version = "0.2.0" }
 //! ```
 //!
 //! Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
@@ -34,7 +34,7 @@
 //! The current version of alloc-shim requires Rust 1.31 or later.
 //!
 
-#![doc(html_root_url = "https://docs.rs/alloc-shim/0.1.0")]
+#![doc(html_root_url = "https://docs.rs/alloc-shim/0.2.0")]
 #![cfg_attr(
     all(feature = "alloc", not(feature = "std")),
     feature(alloc, futures_api)
