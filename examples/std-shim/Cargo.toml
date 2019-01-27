@@ -1,0 +1,13 @@
+[package]
+name = "std-shim"
+version = "0.0.0"
+authors = ["Taiki Endo <te316e89@gmail.com>"]
+edition = "2018"
+publish = false
+
+[dependencies]
+alloc-shim = { path = "../..", version = "0.1" }
+
+[features]
+std = ["alloc-shim/std"]
+alloc = ["alloc-shim/alloc"]
