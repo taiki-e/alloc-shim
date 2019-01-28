@@ -1,5 +1,11 @@
 # Unreleased
 
+# 0.2.1 - 2019-01-28
+
+* Fix a bug that can be compiled with the stable compiler when both `std` and `alloc` are specified.
+
+* Fix documentation.
+
 # 0.2.0 - 2019-01-27
 
 * Change APIs. You can also use it like [this example](examples/std-shim).

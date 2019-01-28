@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-alloc-shim = { version = "0.2.0" }
+alloc-shim = { version = "0.2.1" }
 ```
 
 Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
