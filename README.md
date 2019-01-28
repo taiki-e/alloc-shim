@@ -30,6 +30,7 @@ alloc = ["alloc-shim/alloc"]
 Now, you can use alloc-shim:
 
 ```rust
+#[cfg(any(feature = "alloc", feature = "std"))]
 use alloc::prelude::v1::*; // And more...
 ```
 

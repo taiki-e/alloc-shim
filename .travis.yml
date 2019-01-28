@@ -41,7 +41,7 @@ matrix:
     - rust: nightly
       name: cargo doc
       script:
-        - cargo doc --no-deps
+        - cargo doc --no-deps --all-features
 
 before_script:
   - set -o errexit
