@@ -27,12 +27,6 @@ std = ["alloc-shim/std"]
 alloc = ["alloc-shim/alloc"]
 ```
 
-Add this to your crate root (`lib.rs` or `main.rs`):
-
-```rust
-#![cfg_attr(feature = "alloc", feature(alloc))]
-```
-
 Now, you can use alloc-shim:
 
 ```rust
