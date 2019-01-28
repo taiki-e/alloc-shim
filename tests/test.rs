@@ -1,8 +1,8 @@
 #![deny(warnings)]
 #![allow(unused_imports)]
 #![cfg_attr(
-    all(feature = "alloc", not(feature = "std")),
-    feature(alloc, futures_api, core_panic_info, core_intrinsics, raw)
+    feature = "alloc",
+    feature(futures_api, core_panic_info, core_intrinsics, raw)
 )]
 
 use alloc::{
@@ -12,8 +12,8 @@ use alloc::{
     time, u128, u16, u32, u64, u8, usize,
 };
 
-#[cfg(feature = "alloc")]
+#[cfg(any(feature = "alloc", feature = "std"))]
 use alloc::{boxed, collections, panic, prelude::v1, rc, string, sync::atomic, sync::Arc, vec};
 
-#[cfg(all(feature = "alloc", not(feature = "std")))]
+#[cfg(feature = "alloc")]
 use alloc::{future, intrinsics, pin, raw, task};

@@ -35,10 +35,7 @@
 //!
 
 #![doc(html_root_url = "https://docs.rs/alloc-shim/0.2.0")]
-#![cfg_attr(
-    all(feature = "alloc", not(feature = "std")),
-    feature(alloc, futures_api)
-)]
+#![cfg_attr(feature = "alloc", feature(alloc, futures_api))]
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]
 extern crate alloc as liballoc;
@@ -47,23 +44,26 @@ extern crate alloc as liballoc;
 mod shim {
     // str: https://doc.rust-lang.org/nightly/core/str/index.html vs https://doc.rust-lang.org/nightly/alloc/str/index.html
     pub use core::{str, *};
+
     #[cfg(feature = "alloc")]
     pub use liballoc::{alloc, borrow, fmt, slice, task, *};
 
+    // The layout in the prelude module is different for `std` and `alloc`.
     /// The alloc Prelude
+    #[cfg(feature = "alloc")]
     pub mod prelude {
         /// The alloc Prelude
         pub mod v1 {
             pub use core::prelude::v1::*;
-            #[cfg(feature = "alloc")]
             pub use liballoc::prelude::*;
         }
     }
 
+    // `alloc::sync` does not include `atomic` module
     /// Synchronization primitives
+    #[cfg(feature = "alloc")]
     pub mod sync {
         pub use core::sync::atomic;
-        #[cfg(feature = "alloc")]
         pub use liballoc::sync::*;
     }
 }
