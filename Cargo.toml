@@ -30,4 +30,4 @@ alloc = []
 futures = []
 
 [package.metadata.docs.rs]
-features = ["alloc"]
+features = ["alloc", "futures"]
