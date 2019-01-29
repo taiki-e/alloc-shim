@@ -14,7 +14,7 @@ categories = ["rust-patterns", "no-std"]
 exclude = ["/.travis.yml"]
 
 [workspace]
-members = ["examples/other-way", "examples/alloc-shim", "examples/std-shim"]
+members = ["examples/other-way", "examples/alloc-shim"]
 
 [badges]
 travis-ci = { repository = "taiki-e/alloc-shim" }
@@ -25,6 +25,9 @@ name = "alloc"
 [features]
 std = []
 alloc = []
+
+# Use `alloc::task`.
+futures = []
 
 [package.metadata.docs.rs]
 features = ["alloc"]

@@ -8,7 +8,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! alloc-shim = { version = "0.2.1" }
+//! alloc-shim  = "0.2.1"
 //! ```
 //!
 //! Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
@@ -19,52 +19,96 @@
 //! alloc = ["alloc-shim/alloc"]
 //! ```
 //!
+//! Add this to your crate root (lib.rs or main.rs):
+//!
+//! ```rust,ignore
+//! #![cfg_attr(feature = "alloc", feature(alloc))]
+//! ```
+//!
 //! Now, you can use alloc-shim:
 //!
 //! ```rust
+//! # #![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
 //! #[cfg(any(feature = "alloc", feature = "std"))]
-//! use alloc::prelude::v1::*; // And more...
+//! use alloc::prelude::*; // And more...
 //! ```
 //!
 //! The current version of alloc-shim requires Rust 1.31 or later.
 //!
+//! ## Crate Features
+//!
+//! If not either `std` or `alloc` is specified, this crate does nothing.
+//!
+//! * `std`
+//!   * Disabled by default.
+//!   * Enable to use `std` crate.
+//!
+//! * `alloc`
+//!   * Disabled by default.
+//!   * Enable to use `alloc` crate.
+//!   * Note that `std` crate is used if both `std` and `alloc` are specified at the same time.
+//!   * This requires Rust Nightly.
+//!
+//! * `futures`
+//!   * Disabled by default.
+//!   * Enable to use `alloc::task`.
+//!   * This requires Rust Nightly.
+//!
 
 #![doc(html_root_url = "https://docs.rs/alloc-shim/0.2.1")]
-#![cfg_attr(feature = "alloc", feature(alloc, futures_api))]
+#![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
+#![cfg_attr(futures, feature(futures_api))]
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]
 extern crate alloc as liballoc;
 
-#[cfg(not(feature = "std"))]
+#[cfg(all(feature = "alloc", not(feature = "std")))]
 mod shim {
-    // str: https://doc.rust-lang.org/nightly/core/str/index.html vs https://doc.rust-lang.org/nightly/alloc/str/index.html
-    pub use core::{str, *};
+    pub use liballoc::{
+        alloc, borrow, boxed, collections, fmt, format, rc, slice, str, string, vec,
+    };
 
-    #[cfg(feature = "alloc")]
-    pub use liballoc::{alloc, borrow, fmt, slice, task, *};
+    /// Synchronization primitives
+    pub mod sync {
+        pub use liballoc::sync::*;
+
+        // `alloc::sync` does not include `atomic` module
+        // pub use core::sync::atomic;
+    }
+
+    #[cfg(futures)]
+    pub use liballoc::task;
+
+    // FIXME(taiki-e):
+    // `alloc::prelude` is required to use `#![feature(alloc)]` now.
+    // Should we rewrite it so that it can be used without specifying `#![feature(alloc)]`?
+    //
+    // /// The alloc Prelude
+    // pub mod prelude {
+    //    pub use liballoc::prelude::*;
+    // }
+    pub use liballoc::prelude;
+}
+
+#[cfg(feature = "std")]
+mod shim {
+    pub use std::{alloc, borrow, boxed, collections, fmt, format, rc, slice, str, string, vec};
+
+    /// Synchronization primitives
+    pub mod sync {
+        pub use std::sync::{Arc, Weak};
+
+        // `alloc::sync` does not include `atomic` module
+        // pub use std::sync::atomic;
+    }
+
+    #[cfg(futures)]
+    pub use std::task;
 
     // The layout in the prelude module is different for `std` and `alloc`.
     /// The alloc Prelude
-    #[cfg(feature = "alloc")]
-    pub mod prelude {
-        /// The alloc Prelude
-        pub mod v1 {
-            pub use core::prelude::v1::*;
-            pub use liballoc::prelude::*;
-        }
-    }
-
-    // `alloc::sync` does not include `atomic` module
-    /// Synchronization primitives
-    #[cfg(feature = "alloc")]
-    pub mod sync {
-        pub use core::sync::atomic;
-        pub use liballoc::sync::*;
-    }
+    pub use std::prelude::v1 as prelude;
 }
 
-#[cfg(not(feature = "std"))]
+#[cfg(any(feature = "alloc", feature = "std"))]
 pub use self::shim::*;
-
-#[cfg(feature = "std")]
-pub use std::*;

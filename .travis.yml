@@ -13,19 +13,17 @@ matrix:
       script:
         - cargo test
         - cargo test --manifest-path examples/alloc-shim/Cargo.toml
-        - cargo test --manifest-path examples/std-shim/Cargo.toml
         - cargo test --manifest-path examples/other-way/Cargo.toml
-        - cargo test --features=std
+        - cargo test --features=std,futures
         - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std
-        - cargo test --manifest-path examples/std-shim/Cargo.toml --features=std
         - cargo test --manifest-path examples/other-way/Cargo.toml --features=std
-        - cargo test --features=alloc
-        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=alloc
-        - cargo test --manifest-path examples/std-shim/Cargo.toml --features=alloc
+        - cargo test --features=alloc,futures
+        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=alloc,nightly
         - cargo test --manifest-path examples/other-way/Cargo.toml --features=alloc
+        - cargo test --features=std,alloc
+        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std,alloc
         - cargo test --all-features
         - cargo test --manifest-path examples/alloc-shim/Cargo.toml --all-features
-        - cargo test --manifest-path examples/std-shim/Cargo.toml --all-features
         - cargo test --manifest-path examples/other-way/Cargo.toml --all-features
 
     - rust: nightly
@@ -49,12 +47,12 @@ before_script:
 script:
   - cargo test
   - cargo test --manifest-path examples/alloc-shim/Cargo.toml
-  - cargo test --manifest-path examples/std-shim/Cargo.toml
   - cargo test --manifest-path examples/other-way/Cargo.toml
   - cargo test --features=std
   - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std
-  - cargo test --manifest-path examples/std-shim/Cargo.toml --features=std
   - cargo test --manifest-path examples/other-way/Cargo.toml --features=std
+  - cargo test --features=std,alloc
+  - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std,alloc
 
 notifications:
   email:

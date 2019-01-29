@@ -16,7 +16,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-alloc-shim = { version = "0.2.1" }
+alloc-shim = "0.2.1"
 ```
 
 Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
@@ -27,14 +27,39 @@ std = ["alloc-shim/std"]
 alloc = ["alloc-shim/alloc"]
 ```
 
+Add this to your crate root (lib.rs or main.rs):
+
+```rust
+#![cfg_attr(feature = "alloc", feature(alloc))]
+```
+
 Now, you can use alloc-shim:
 
 ```rust
 #[cfg(any(feature = "alloc", feature = "std"))]
-use alloc::prelude::v1::*; // And more...
+use alloc::prelude::*; // And more...
 ```
 
 The current version of alloc-shim requires Rust 1.31 or later.
+
+## Crate Features
+
+If not either `std` or `alloc` is specified, this crate does nothing.
+
+* `std`
+  * Disabled by default.
+  * Enable to use `std` crate.
+
+* `alloc`
+  * Disabled by default.
+  * Enable to use `alloc` crate.
+  * Note that `std` crate is used if both `std` and `alloc` are specified at the same time (and it can compile in the minimum required version of alloc-shim).
+  * This requires Rust Nightly.
+
+* `futures`
+  * Disabled by default.
+  * Enable to use `alloc::task`.
+  * This requires Rust Nightly.
 
 ## License
 
