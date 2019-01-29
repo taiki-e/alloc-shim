@@ -57,7 +57,7 @@
 
 #![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.0")]
 #![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
-#![cfg_attr(futures, feature(futures_api))]
+#![cfg_attr(feature = "futures", feature(futures_api))]
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]
 extern crate alloc as liballoc;
@@ -76,7 +76,7 @@ mod shim {
         // pub use core::sync::atomic;
     }
 
-    #[cfg(futures)]
+    #[cfg(feature = "futures")]
     pub use liballoc::task;
 
     // FIXME(taiki-e):
@@ -102,7 +102,7 @@ mod shim {
         // pub use std::sync::atomic;
     }
 
-    #[cfg(futures)]
+    #[cfg(feature = "futures")]
     pub use std::task;
 
     // The layout in the prelude module is different for `std` and `alloc`.

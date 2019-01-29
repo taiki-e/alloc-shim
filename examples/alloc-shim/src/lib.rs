@@ -1,4 +1,5 @@
 #![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
+#![cfg_attr(feature = "nightly", feature(futures_api))]
 
 #[cfg(all(feature = "alloc", not(any(feature = "std", feature = "nightly"))))]
 compile_error!("The `alloc` feature without `std` requires the `nightly` feature active to explicitly opt-in to unstable features");
@@ -13,6 +14,8 @@ fn core_fn() {
 fn alloc_fn() {
     pub use alloc::prelude::*;
     pub use alloc::sync::Arc;
+    #[cfg(feature = "nightly")]
+    pub use alloc::task::{LocalWaker, Poll};
 
     let _ = alloc::vec![0u8];
     let _ = alloc::format!("");
