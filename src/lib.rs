@@ -8,7 +8,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! alloc-shim  = "0.2.1"
+//! alloc-shim = "0.3.0"
 //! ```
 //!
 //! Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
@@ -55,7 +55,7 @@
 //!   * This requires Rust Nightly.
 //!
 
-#![doc(html_root_url = "https://docs.rs/alloc-shim/0.2.1")]
+#![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.0")]
 #![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
 #![cfg_attr(futures, feature(futures_api))]
 

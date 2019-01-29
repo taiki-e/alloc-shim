@@ -1,5 +1,7 @@
 # Unreleased
 
+# 0.3.0 - 2019-01-29
+
 * Rewrite to the same layout as the `alloc` crate.
 
 # 0.2.1 - 2019-01-28

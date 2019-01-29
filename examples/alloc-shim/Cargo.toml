@@ -6,7 +6,7 @@ edition = "2018"
 publish = false
 
 [dependencies]
-alloc-shim = { path = "../..", version = "0.2" }
+alloc-shim = { path = "../..", version = "0.3" }
 
 [features]
 std = ["alloc", "alloc-shim/std"]
