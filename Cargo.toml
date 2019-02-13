@@ -17,7 +17,8 @@ exclude = ["/.travis.yml"]
 members = ["examples/other-way", "examples/alloc-shim"]
 
 [badges]
-travis-ci = { repository = "taiki-e/alloc-shim" }
+# https://github.com/rust-lang/crates.io/issues/1392
+# travis-ci = { repository = "taiki-e/alloc-shim" }
 
 [lib]
 name = "alloc"
