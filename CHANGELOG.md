@@ -1,5 +1,7 @@
 # Unreleased
 
+* Remove "futures" feature.
+
 # 0.3.0 - 2019-01-29
 
 * Rewrite to the same layout as the `alloc` crate.

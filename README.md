@@ -56,11 +56,6 @@ If not either `std` or `alloc` is specified, this crate does nothing.
   * Note that `std` crate is used if both `std` and `alloc` are specified at the same time (and it can compile in the minimum required version of alloc-shim).
   * This requires Rust Nightly.
 
-* `futures`
-  * Disabled by default.
-  * Enable to use `alloc::task`.
-  * This requires Rust Nightly.
-
 ## License
 
 Licensed under either of

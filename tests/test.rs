@@ -1,7 +1,7 @@
-#![deny(warnings)]
-#![allow(unused_imports)]
 #![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
-#![cfg_attr(feature = "futures", feature(futures_api))]
+#![deny(warnings)]
+#![deny(rust_2018_idioms)]
+#![allow(unused_imports)]
 
 #[cfg(any(feature = "alloc", feature = "std"))]
 mod test {
@@ -12,7 +12,4 @@ mod test {
 
     // `alloc::sync` does not include `atomic` module
     // use alloc::sync::atomic;
-
-    #[cfg(unstable)]
-    use alloc::task;
 }

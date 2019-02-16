@@ -27,8 +27,5 @@ name = "alloc"
 std = []
 alloc = []
 
-# Use `alloc::task`.
-futures = []
-
 [package.metadata.docs.rs]
-features = ["alloc", "futures"]
+features = ["alloc"]

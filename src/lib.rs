@@ -57,7 +57,6 @@
 
 #![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.0")]
 #![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
-#![cfg_attr(feature = "futures", feature(futures_api))]
 #![deny(rust_2018_idioms)]
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]
@@ -76,9 +75,6 @@ mod shim {
         // `alloc::sync` does not include `atomic` module
         // pub use core::sync::atomic;
     }
-
-    #[cfg(feature = "futures")]
-    pub use liballoc::task;
 
     // FIXME(taiki-e):
     // `alloc::prelude` is required to use `#![feature(alloc)]` now.
@@ -102,9 +98,6 @@ mod shim {
         // `alloc::sync` does not include `atomic` module
         // pub use std::sync::atomic;
     }
-
-    #[cfg(feature = "futures")]
-    pub use std::task;
 
     // The layout in the prelude module is different for `std` and `alloc`.
     /// The alloc Prelude

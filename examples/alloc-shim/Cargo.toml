@@ -11,4 +11,3 @@ alloc-shim = { path = "../..", version = "0.3" }
 [features]
 std = ["alloc", "alloc-shim/std"]
 alloc = ["alloc-shim/alloc"]
-nightly = ["alloc-shim/futures"]
