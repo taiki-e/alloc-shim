@@ -1,6 +1,8 @@
 # Unreleased
 
-* Remove "futures" feature.
+# 0.3.1 - 2019-02-18
+
+* Remove "futures" feature (Update to new nightly).
 
 # 0.3.0 - 2019-01-29
 
