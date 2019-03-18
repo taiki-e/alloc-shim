@@ -1,5 +1,18 @@
 # Unreleased
 
+* **This crate is deprecated.** You can now write:
+
+  ```rust
+  #![cfg_attr(feature = "alloc", feature(alloc))]
+
+  #[cfg(all(feature = "alloc", not(feature = "std")))]
+  extern crate alloc;
+  #[cfg(feature = "std")]
+  extern crate std as alloc;
+  ```
+
+* Update to new nightly.
+
 # 0.3.1 - 2019-02-18
 
 * Remove "futures" feature (Update to new nightly).

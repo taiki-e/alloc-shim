@@ -1,17 +1,14 @@
-#![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
-
-#[cfg(all(feature = "alloc", not(any(feature = "std", feature = "nightly"))))]
-compile_error!("The `alloc` feature without `std` requires the `nightly` feature active to explicitly opt-in to unstable features");
+#![cfg_attr(feature = "alloc", feature(alloc))]
 
 #[test]
 fn core_fn() {
     pub use core::sync::atomic::AtomicPtr;
 }
 
-#[cfg(feature = "alloc")]
+#[cfg(any(feature = "alloc", feature = "std"))]
 #[test]
 fn alloc_fn() {
-    pub use alloc::prelude::*;
+    pub use alloc::prelude::v1::*;
     pub use alloc::sync::Arc;
     pub use core::sync::atomic::AtomicPtr;
 
