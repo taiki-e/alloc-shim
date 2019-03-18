@@ -8,7 +8,16 @@
 
 A shim crate for to import items of alloc crate ergonomically.
 
-[Examples](examples)
+**This crate is deprecated.** You can now write:
+
+```rust
+#![cfg_attr(feature = "alloc", feature(alloc))]
+
+#[cfg(all(feature = "alloc", not(feature = "std")))]
+extern crate alloc;
+#[cfg(feature = "std")]
+extern crate std as alloc;
+```
 
 ## Usage
 
@@ -31,13 +40,6 @@ Add this to your crate root (lib.rs or main.rs):
 
 ```rust
 #![cfg_attr(feature = "alloc", feature(alloc))]
-```
-
-Now, you can use alloc-shim:
-
-```rust
-#[cfg(any(feature = "alloc", feature = "std"))]
-use alloc::prelude::*; // And more...
 ```
 
 The current version of alloc-shim requires Rust 1.31 or later.

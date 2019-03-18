@@ -1,39 +1,17 @@
 //! A shim crate for to import items of alloc crate ergonomically.
 //!
-//! [Examples](https://github.com/taiki-e/alloc-shim/tree/master/examples)
-//!
-//! ## Usage
-//!
-//! Add this to your `Cargo.toml`:
-//!
-//! ```toml
-//! [dependencies]
-//! alloc-shim = "0.3.1"
-//! ```
-//!
-//! Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
-//!
-//! ```toml
-//! [features]
-//! std = ["alloc-shim/std"]
-//! alloc = ["alloc-shim/alloc"]
-//! ```
-//!
-//! Add this to your crate root (lib.rs or main.rs):
-//!
-//! ```rust,ignore
-//! #![cfg_attr(feature = "alloc", feature(alloc))]
-//! ```
-//!
-//! Now, you can use alloc-shim:
+//! **This crate is deprecated.** You can now write:
 //!
 //! ```rust
-//! # #![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
-//! #[cfg(any(feature = "alloc", feature = "std"))]
-//! use alloc::prelude::*; // And more...
+//! #![cfg_attr(feature = "alloc", feature(alloc))]
+//!
+//! #[cfg(all(feature = "alloc", not(feature = "std")))]
+//! extern crate alloc;
+//! #[cfg(feature = "std")]
+//! extern crate std as alloc;
 //! ```
 //!
-//! The current version of alloc-shim requires Rust 1.31 or later.
+//! [Examples](https://github.com/taiki-e/alloc-shim/tree/master/examples)
 //!
 //! ## Crate Features
 //!
@@ -49,60 +27,22 @@
 //!   * Note that `std` crate is used if both `std` and `alloc` are specified at the same time.
 //!   * This requires Rust Nightly.
 //!
-//! * `futures`
-//!   * Disabled by default.
-//!   * Enable to use `alloc::task`.
-//!   * This requires Rust Nightly.
-//!
 
 #![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.1")]
-#![cfg_attr(all(feature = "alloc", not(feature = "std")), feature(alloc))]
+#![cfg_attr(
+    all(feature = "alloc", not(feature = "std")),
+    feature(alloc, alloc_prelude)
+)]
 #![deny(rust_2018_idioms)]
+#![deprecated(since = "0.3.2", note = "this crate is deprecated without replacement")]
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]
 extern crate alloc as liballoc;
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]
-mod shim {
-    pub use liballoc::{
-        alloc, borrow, boxed, collections, fmt, format, rc, slice, str, string, vec,
-    };
-
-    /// Synchronization primitives
-    pub mod sync {
-        pub use liballoc::sync::*;
-
-        // `alloc::sync` does not include `atomic` module
-        // pub use core::sync::atomic;
-    }
-
-    // FIXME(taiki-e):
-    // `alloc::prelude` is required to use `#![feature(alloc)]` now.
-    // Should we rewrite it so that it can be used without specifying `#![feature(alloc)]`?
-    //
-    // /// The alloc Prelude
-    // pub mod prelude {
-    //    pub use liballoc::prelude::*;
-    // }
-    pub use liballoc::prelude;
-}
+pub use liballoc::*;
 
 #[cfg(feature = "std")]
-mod shim {
-    pub use std::{alloc, borrow, boxed, collections, fmt, format, rc, slice, str, string, vec};
-
-    /// Synchronization primitives
-    pub mod sync {
-        pub use std::sync::{Arc, Weak};
-
-        // `alloc::sync` does not include `atomic` module
-        // pub use std::sync::atomic;
-    }
-
-    // The layout in the prelude module is different for `std` and `alloc`.
-    /// The alloc Prelude
-    pub use std::prelude::v1 as prelude;
-}
-
-#[cfg(any(feature = "alloc", feature = "std"))]
-pub use self::shim::*;
+pub use std::{
+    alloc, borrow, boxed, collections, fmt, format, prelude, rc, slice, str, string, sync, vec,
+};

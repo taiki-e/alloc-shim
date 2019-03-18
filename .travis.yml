@@ -13,23 +13,15 @@ matrix:
     - rust: stable
     - rust: nightly
       script:
-        - cargo test
-        - cargo test --manifest-path examples/alloc-shim/Cargo.toml
-        - cargo test --manifest-path examples/other-way/Cargo.toml
-        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std
-        - cargo test --manifest-path examples/other-way/Cargo.toml --features=std
-        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=alloc,nightly
-        - cargo test --manifest-path examples/other-way/Cargo.toml --features=alloc
-        - cargo test --features=std,alloc
-        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std,alloc
-        - cargo test --all-features
-        - cargo test --manifest-path examples/alloc-shim/Cargo.toml --all-features
-        - cargo test --manifest-path examples/other-way/Cargo.toml --all-features
+        - cargo test --all
+        - cargo test --all --features=std
+        - cargo test --all --features=alloc
+        - cargo test --all --all-features
 
     - rust: nightly
       name: cargo clippy
       script:
-        - if rustup component add clippy-preview;
+        - if rustup component add clippy;
           then
             cargo clippy --all --all-features -- -Dwarnings;
           else
@@ -45,14 +37,8 @@ before_script:
   - set -o errexit
 
 script:
-  - cargo test
-  - cargo test --manifest-path examples/alloc-shim/Cargo.toml
-  - cargo test --manifest-path examples/other-way/Cargo.toml
-  - cargo test --features=std
-  - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std
-  - cargo test --manifest-path examples/other-way/Cargo.toml --features=std
-  - cargo test --features=std,alloc
-  - cargo test --manifest-path examples/alloc-shim/Cargo.toml --features=std,alloc
+  - cargo test --all
+  - cargo test --all --features=std
 
 notifications:
   email:
