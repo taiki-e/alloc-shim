@@ -1,5 +1,7 @@
 # Unreleased
 
+# 0.3.2 - 2019-03-19
+
 * **This crate is deprecated.** You can now write:
 
   ```rust

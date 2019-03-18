@@ -19,45 +19,6 @@ extern crate alloc;
 extern crate std as alloc;
 ```
 
-## Usage
-
-Add this to your `Cargo.toml`:
-
-```toml
-[dependencies]
-alloc-shim = "0.3.1"
-```
-
-Set the features so that `std` depends on `alloc-shim/std`, and `alloc` depends on `alloc-shim/alloc`:
-
-```toml
-[features]
-std = ["alloc-shim/std"]
-alloc = ["alloc-shim/alloc"]
-```
-
-Add this to your crate root (lib.rs or main.rs):
-
-```rust
-#![cfg_attr(feature = "alloc", feature(alloc))]
-```
-
-The current version of alloc-shim requires Rust 1.31 or later.
-
-## Crate Features
-
-If not either `std` or `alloc` is specified, this crate does nothing.
-
-* `std`
-  * Disabled by default.
-  * Enable to use `std` crate.
-
-* `alloc`
-  * Disabled by default.
-  * Enable to use `alloc` crate.
-  * Note that `std` crate is used if both `std` and `alloc` are specified at the same time (and it can compile in the minimum required version of alloc-shim).
-  * This requires Rust Nightly.
-
 ## License
 
 Licensed under either of

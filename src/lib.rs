@@ -11,24 +11,8 @@
 //! extern crate std as alloc;
 //! ```
 //!
-//! [Examples](https://github.com/taiki-e/alloc-shim/tree/master/examples)
-//!
-//! ## Crate Features
-//!
-//! If not either `std` or `alloc` is specified, this crate does nothing.
-//!
-//! * `std`
-//!   * Disabled by default.
-//!   * Enable to use `std` crate.
-//!
-//! * `alloc`
-//!   * Disabled by default.
-//!   * Enable to use `alloc` crate.
-//!   * Note that `std` crate is used if both `std` and `alloc` are specified at the same time.
-//!   * This requires Rust Nightly.
-//!
 
-#![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.1")]
+#![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.2")]
 #![cfg_attr(
     all(feature = "alloc", not(feature = "std")),
     feature(alloc, alloc_prelude)
