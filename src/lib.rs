@@ -10,9 +10,9 @@
 //! ```
 //!
 
-#![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.3")]
+#![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.4")]
 #![deny(rust_2018_idioms)]
-#![deprecated(since = "0.3.3", note = "this crate is deprecated without replacement")]
+#![deprecated(since = "0.3.4", note = "this crate is deprecated without replacement")]
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]
 extern crate alloc as alloc_crate;
