@@ -5,6 +5,8 @@
 [![License][crates-license-badge]][crates-url]
 [![Minimum supported Rust version][rustc-badge]][rustc-url]
 
+[crates-version-badge]: https://img.shields.io/crates/v/alloc-shim.svg
+[crates-license-badge]: https://img.shields.io/crates/l/alloc-shim.svg
 [crates-badge]: https://img.shields.io/crates/v/alloc-shim.svg
 [crates-url]: https://crates.io/crates/alloc-shim/
 [docs-badge]: https://docs.rs/alloc-shim/badge.svg
