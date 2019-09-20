@@ -1,7 +1,7 @@
 [package]
 name = "alloc-shim"
 # NB: When modifying, also modify html_root_url in lib.rs
-version = "0.3.2"
+version = "0.3.3"
 authors = ["Taiki Endo <te316e89@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0/MIT"
@@ -9,12 +9,6 @@ description = "A shim crate for to import items of alloc crate ergonomically."
 repository = "https://github.com/taiki-e/alloc-shim"
 documentation = "https://docs.rs/alloc-shim/"
 readme = "README.md"
-keywords = ["alloc", "no_std"]
-categories = ["rust-patterns", "no-std"]
-exclude = ["/.travis.yml"]
-
-[workspace]
-members = ["examples/other-way", "examples/alloc-shim"]
 
 [badges]
 maintenance = { status = "deprecated" }
