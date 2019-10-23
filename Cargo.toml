@@ -7,7 +7,7 @@ license = "Apache-2.0/MIT"
 repository = "https://github.com/taiki-e/alloc-shim"
 readme = "README.md"
 description = """
-A shim crate for to import items of alloc crate ergonomically.
+A shim crate for to import items of alloc crate ergonomically. -- This crate is deprecated.
 """
 
 [package.metadata.docs.rs]
