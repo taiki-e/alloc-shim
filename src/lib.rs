@@ -1,5 +1,3 @@
-//! A shim crate for to import items of alloc crate ergonomically.
-//!
 //! **This crate is deprecated.** You can now write:
 //!
 //! ```rust
@@ -9,8 +7,7 @@
 //! extern crate std as alloc;
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.4")]
-#![deny(rust_2018_idioms)]
+#![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.5")]
 #![deprecated(since = "0.3.4", note = "this crate is deprecated without replacement")]
 
 #[cfg(all(feature = "alloc", not(feature = "std")))]

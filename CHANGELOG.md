@@ -6,6 +6,10 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [0.3.5] - 2019-10-23
+
+* Added maintenance status badge to readme.
+
 ## [0.3.4] - 2019-09-20
 
 * Fix urls in readme.
@@ -55,7 +59,8 @@ This project adheres to [Semantic Versioning](https://semver.org).
 
 Initial release
 
-[Unreleased]: https://github.com/taiki-e/alloc-shim/compare/v0.3.4...HEAD
+[Unreleased]: https://github.com/taiki-e/alloc-shim/compare/v0.3.5...HEAD
+[0.3.5]: https://github.com/taiki-e/alloc-shim/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/taiki-e/alloc-shim/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/taiki-e/alloc-shim/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/taiki-e/alloc-shim/compare/v0.3.1...v0.3.2

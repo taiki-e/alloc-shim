@@ -1,13 +1,13 @@
 [package]
 name = "alloc-shim"
-version = "0.3.4"
+version = "0.3.5"
 authors = ["Taiki Endo <te316e89@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0 OR MIT"
 repository = "https://github.com/taiki-e/alloc-shim"
 readme = "README.md"
 description = """
-A shim crate for to import items of alloc crate ergonomically. -- This crate is deprecated.
+A shim crate for to import items of alloc crate ergonomically. (deprecated).
 """
 
 [package.metadata.docs.rs]

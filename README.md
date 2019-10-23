@@ -4,7 +4,7 @@
 [![docs-badge]][docs-url]
 [![license-badge]][license]
 [![rustc-badge]][rustc-url]
-![maintenance-badge]
+![maintenance-status-badge]
 
 [crates-badge]: https://img.shields.io/crates/v/alloc-shim.svg
 [crates-url]: https://crates.io/crates/alloc-shim
@@ -14,9 +14,7 @@
 [license]: #license
 [rustc-badge]: https://img.shields.io/badge/rustc-1.31+-lightgray.svg
 [rustc-url]: https://blog.rust-lang.org/2018/12/06/Rust-1.31-and-rust-2018.html
-[maintenance-badge]: https://img.shields.io/badge/maintenance-deprecated-red.svg
-
-A shim crate for to import items of alloc crate ergonomically.
+[maintenance-status-badge]: https://img.shields.io/badge/maintenance-deprecated-red.svg
 
 **This crate is deprecated.** You can now write:
 
