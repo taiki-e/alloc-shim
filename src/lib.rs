@@ -8,7 +8,6 @@
 //! #[cfg(feature = "std")]
 //! extern crate std as alloc;
 //! ```
-//!
 
 #![doc(html_root_url = "https://docs.rs/alloc-shim/0.3.4")]
 #![deny(rust_2018_idioms)]
